@@ -1,0 +1,95 @@
+
+ 
+   <body ng-app="application" ng-controller="appController">
+ <div class="form-group">
+    <label>Query All Cert </label>
+    <p><button (click)="queryAllCerts()" >Query</button></p>
+  </div>
+
+
+  <table id="all_cert" class="table" align="center">
+
+    <tr>
+      <th>PR no.</th>
+      <th>Student Name</th>
+      <th>College Name</th>
+      <th>Seat no. </th>
+      <th>Examination</th>
+      <th>Year of Passing</th>
+      <th>subject</th>
+
+    </tr>
+
+    <tr *ngIf="found">
+      <td>{{cert.PRno}}</td>
+      <td>{{cert.Student_Name}}</td>
+      <td>{{cert.College_Name}}</td>
+      <td>{{cert.Seat_no}}</td>
+      <td>{{cert.Examination}}</td>
+      <td>{{cert.YOP}}</td>
+      <td>{{cert.Subject}}</td>
+
+    </tr>
+  </table>
+
+
+    <div class="form-group">
+    <label>Query a Specific Cert</label><br>
+    <h5 style="color:red;margin-bottom:2%" id="error_query">Error: Please enter a valid Cert Id</h5>
+    
+    Enter a Seat number: <input id="createName" class="form-control" type="text" placeholder="Ex: 101" ng-model="cert_Seatno">
+    <button (click)="querySpecificCert()" >Query Specific</button>  </div>
+
+  <table  class="table">
+    <tr>
+      <th>PR no.</th>
+      <th>Student Name</th>
+      <th>College Name</th>
+      <th>Seat no. </th>
+      <th>Examination</th>
+      <th>Year of Passing</th>
+      <th>subject</th>
+    </tr>
+      <tr ng-repeat="cert in all_cert">
+        <td>{{cert.PRno}}</td>
+        <td>{{cert.Student_Name}}</td>
+        <td>{{cert.College_Name}}</td>
+        <td>{{cert.Seat_no}}</td>
+        <td>{{cert.Examination}}</td>
+        <td>{{cert.YOP}}</td>
+        <td>{{cert.Subject}}</td>
+    </tr>
+  </table>
+    
+  
+
+  <br><br>
+
+
+  <div class="form-group">
+    <label>Add cert</label>
+    <h5 style="color:green;margin-bottom:2%" id="success_create">Success! Tx ID: {{create_cert}}</h5>
+    <br>
+    Enter PR no.: <input class="form-control" type="text" placeholder="Ex: 101" ng-model="cert_PRno"><br><br>
+    Enter name of college: <input class="form-control" type="text" placeholder="Ex: PCCE" ng-model="cert_CName"><br><br>
+    Enter Seat no.: <input id="createName" class="form-control" type="text" placeholder="Ex: 101" ng-model="cert_Seatno"><br><br> 
+    Enter Examination: <input id="createName" class="form-control" type="text" placeholder="Ex: may/june" ng-model="cert_examination"><br><br>
+    Enter Year of passing: <input class="form-control" type="text" placeholder="Ex: 2019" ng-model="cert_YOP"><br><br>
+    Enter Sub: <input class="form-control" type="text" placeholder="Ex: abc" ng-model="cert_sububject"><br><br>
+    <button (click)="recordCert()" >Submit Records</button> 
+  </div>
+
+
+  <br><br>
+
+  <div class="form-group">
+      <label>Transfer Cert</label><br>
+      <h5 style="color:green;margin-bottom:2%" id="success_holder">Success! Tx ID: {{change_holder}}</h5>
+      <h5 style="color:red;margin-bottom:2%" id="error_holder">Error: Please enter a valid seat no Id</h5>
+      Enter Seat no.: <input class="form-control" name="assetSelect" placeholder="Ex: 1" ng-model="holder.idd"><br><br>
+      Enter Student Name: <input class="form-control" name="assetSelect" placeholder="Ex: abc" ng-model="holder.namee"><br><br>
+      <button (click)="transferCert()" >Change Records</button> 
+    </div>
+
+
+</body>
